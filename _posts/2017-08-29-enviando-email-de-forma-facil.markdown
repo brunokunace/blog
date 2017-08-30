@@ -25,8 +25,8 @@ Vamos começar, precisamos das seguintes classes.
 2.  `SMTP.php`
 3.  `PHPMailerException.php`
 
-Para isso irei usar o repositorio da [PHPZM ](https://github.com/PHPMailer/PHPMailer/tree/master/src) no GitHub.
-Link no GitHub: https://github.com/PHPMailer/PHPMailer/tree/master/src
+Para isso irei usar o repositorio da [PHPZM ](https://github.com/phpzm/mailer/tree/master/src) no GitHub.
+Link no GitHub: https://github.com/phpzm/mailer
 
 ### Vamos começar.
 
@@ -44,7 +44,7 @@ require_once 'SMTP.php';
 require_once 'PHPMailerException.php';
 
 ```
-**Obs: os arquivos devem estar na mesma ordem.**
+**Obs: os arquivos devem estar na mesma ordem e dentro do mesmo diretório do arquivo sendMail.php criado.**
 
 Depois de importar as classes do **Mailer** iremos iniciar nossa classe, e dar o ponta pé inicial para começar a tratar nossos dados.
 
@@ -52,7 +52,13 @@ Ainda em **sendMail.php**
 
 ```php
 <?php
-$email = new PHPMailer(true); // Inicia nossa classe.
+require_once 'PHPMailer.php';
+require_once 'SMTP.php';
+require_once 'PHPMailerException.php';
+
+use Simples\Mailer\PHPMailer; //Declara o namespace que será usado na classe PHPMailer
+
+$mail = new PHPMailer(true); // Inicia nossa classe.
 try {
     $mail->isSMTP(); // Aqui vc indica seu protocolo nesse exemplo estamos utilizando SMTP.                           
     $mail->Host = 'smtp1.exemplo.com'; // Host do SMTP você pode usar múltiplos apenas separando por ";" (Ponto e Vírgula).
